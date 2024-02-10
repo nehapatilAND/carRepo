@@ -133,8 +133,12 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
             }
 
             R.id.btnSubmit -> {
-                if (mSelectedOptionPosition == 0) {
-                    mCurrentPosition++
+
+                     if (mSelectedOptionPosition == 0 ) {
+                         if(btnSubmit?.text == "SUBMIT"){
+                             Toast.makeText(this, "Please select an option", Toast.LENGTH_SHORT)
+                                 .show()
+                     }
                     when {
                         mCurrentPosition <= mQuestionsList!!.size -> {
                             setQuestion()
@@ -149,6 +153,7 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
                         }
                     }
                 } else {
+                         mCurrentPosition++
                     val question = mQuestionsList?.get(mCurrentPosition - 1)
                     if (question!!.correctAnswer != mSelectedOptionPosition) {
                         answerView(mSelectedOptionPosition, R.drawable.wrong_option_border_bg)
